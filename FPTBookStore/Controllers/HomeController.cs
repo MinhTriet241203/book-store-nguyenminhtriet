@@ -1,4 +1,6 @@
-﻿using FPTBookStore.Models;
+﻿using BookstoreEmailService.Models;
+using BookstoreEmailService.Services;
+using FPTBookStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -39,7 +41,7 @@ namespace FPTBookStore.Controllers
         [HttpGet]
         public IActionResult SendEmail()
         {
-            var message = new Message(new string[] { "mrshine4k@gmail.com", "trietnmgcs210026@fpt.edu.vn" },
+            var message = new MailMessage(new string[] { "mrshine4k@gmail.com", "trietnmgcs210026@fpt.edu.vn" },
                 "Email từ app thư viện",
                 "Gửi được email thư viện rồi nè :O https://i.imgflip.com/5c15oj.png?a467760");
             _emailService.SendEmail(message);
