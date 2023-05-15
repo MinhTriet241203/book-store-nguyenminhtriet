@@ -9,6 +9,7 @@ namespace FPTBookStore.Models
 
         [Required]
         [MaxLength(100)]
+        [Display(Name = "Category")]
         public string CategoryName { get; set; }
     }
 }
