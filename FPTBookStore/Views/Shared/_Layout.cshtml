@@ -59,7 +59,8 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/lib/jquery.unobtrusive-ajax.js"></script>
     <script src="https://kit.fontawesome.com/1c6258baf1.js" crossorigin="anonymous"></script>
-    @Html.RenderUnobtrusiveAjaxScript()
+
+    @Html.RenderUnobtrusiveAjaxScript();
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
