@@ -1,6 +1,7 @@
 ﻿using FPTBookStore.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using FPTBookStore.Models;
 
 namespace FPTBookStore.Data
 {
@@ -10,5 +11,8 @@ namespace FPTBookStore.Data
             : base(options)
         {
         }
+        public DbSet<FPTBookStore.Models.Category> Category { get; set; } = default!;
+        public DbSet<FPTBookStore.Models.Author> Author { get; set; } = default!;
+        public DbSet<FPTBookStore.Models.Book> Book { get; set; } = default!;
     }
 }
