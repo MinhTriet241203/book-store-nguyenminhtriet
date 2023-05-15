@@ -37,7 +37,7 @@ namespace FPTBookStore.Controllers
             var book = await _context.Book
                 .Include(b => b.Author)
                 .Include(b => b.Category)
-                .FirstOrDefaultAsync(m => m.BookID == id);
+                .FirstOrDefaultAsync(m => m.BookId == id);
             if (book == null)
             {
                 return NotFound();
@@ -49,8 +49,8 @@ namespace FPTBookStore.Controllers
         // GET: Book/Create
         public IActionResult Create()
         {
-            ViewData["AuthorID"] = new SelectList(_context.Author, "AuthorId", "AuthorName");
-            ViewData["CategoryID"] = new SelectList(_context.Category, "CategoryID", "CategoryName");
+            ViewData["AuthorId"] = new SelectList(_context.Author, "AuthorId", "AuthorName");
+            ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryID", "CategoryName");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace FPTBookStore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BookID,BookTitle,CategoryID,AuthorID,Pages,PublishDate,Description,Price,Image")] Book book)
+        public async Task<IActionResult> Create([Bind("BookId,BookTitle,CategoryId,AuthorId,Pages,PublishDate,Description,Price,Image")] Book book)
         {
             if (ModelState.IsValid)
             {
@@ -67,8 +67,8 @@ namespace FPTBookStore.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AuthorID"] = new SelectList(_context.Author, "AuthorId", "AuthorName", book.AuthorID);
-            ViewData["CategoryID"] = new SelectList(_context.Category, "CategoryID", "CategoryName", book.CategoryID);
+            ViewData["AuthorId"] = new SelectList(_context.Author, "AuthorId", "AuthorName", book.AuthorId);
+            ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryID", "CategoryName", book.CategoryId);
             return View(book);
         }
 
@@ -85,8 +85,8 @@ namespace FPTBookStore.Controllers
             {
                 return NotFound();
             }
-            ViewData["AuthorID"] = new SelectList(_context.Author, "AuthorId", "AuthorName", book.AuthorID);
-            ViewData["CategoryID"] = new SelectList(_context.Category, "CategoryID", "CategoryName", book.CategoryID);
+            ViewData["AuthorId"] = new SelectList(_context.Author, "AuthorId", "AuthorName", book.AuthorId);
+            ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryID", "CategoryName", book.CategoryId);
             return View(book);
         }
 
@@ -95,9 +95,9 @@ namespace FPTBookStore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BookID,BookTitle,CategoryID,AuthorID,Pages,PublishDate,Description,Price,Image")] Book book)
+        public async Task<IActionResult> Edit(int id, [Bind("BookId,BookTitle,CategoryId,AuthorId,Pages,PublishDate,Description,Price,Image")] Book book)
         {
-            if (id != book.BookID)
+            if (id != book.BookId)
             {
                 return NotFound();
             }
@@ -111,7 +111,7 @@ namespace FPTBookStore.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BookExists(book.BookID))
+                    if (!BookExists(book.BookId))
                     {
                         return NotFound();
                     }
@@ -122,8 +122,8 @@ namespace FPTBookStore.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AuthorID"] = new SelectList(_context.Author, "AuthorId", "AuthorName", book.AuthorID);
-            ViewData["CategoryID"] = new SelectList(_context.Category, "CategoryID", "CategoryName", book.CategoryID);
+            ViewData["AuthorId"] = new SelectList(_context.Author, "AuthorId", "AuthorName", book.AuthorId);
+            ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryID", "CategoryName", book.CategoryId);
             return View(book);
         }
 
@@ -138,7 +138,7 @@ namespace FPTBookStore.Controllers
             var book = await _context.Book
                 .Include(b => b.Author)
                 .Include(b => b.Category)
-                .FirstOrDefaultAsync(m => m.BookID == id);
+                .FirstOrDefaultAsync(m => m.BookId == id);
             if (book == null)
             {
                 return NotFound();
@@ -168,7 +168,7 @@ namespace FPTBookStore.Controllers
 
         private bool BookExists(int id)
         {
-          return (_context.Book?.Any(e => e.BookID == id)).GetValueOrDefault();
+          return (_context.Book?.Any(e => e.BookId == id)).GetValueOrDefault();
         }
     }
 }

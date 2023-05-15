@@ -50,13 +50,13 @@ namespace FPTBookStore.Data.Migrations
 
             modelBuilder.Entity("FPTBookStore.Models.Book", b =>
                 {
-                    b.Property<int>("BookID")
+                    b.Property<int>("BookId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookId"));
 
-                    b.Property<int>("AuthorID")
+                    b.Property<int>("AuthorId")
                         .HasColumnType("int");
 
                     b.Property<string>("BookTitle")
@@ -64,7 +64,7 @@ namespace FPTBookStore.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int>("CategoryID")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -84,11 +84,11 @@ namespace FPTBookStore.Data.Migrations
                     b.Property<DateTime>("PublishDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("BookID");
+                    b.HasKey("BookId");
 
-                    b.HasIndex("AuthorID");
+                    b.HasIndex("AuthorId");
 
-                    b.HasIndex("CategoryID");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Book");
                 });
@@ -317,13 +317,13 @@ namespace FPTBookStore.Data.Migrations
                 {
                     b.HasOne("FPTBookStore.Models.Author", "Author")
                         .WithMany()
-                        .HasForeignKey("AuthorID")
+                        .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("FPTBookStore.Models.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryID")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

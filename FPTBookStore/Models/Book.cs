@@ -6,7 +6,7 @@ namespace FPTBookStore.Models
     public class Book
     {
         [Required]
-        public int BookID { get; set; }
+        public int BookId { get; set; }
 
         [Required]
         [MaxLength(255)]
@@ -16,13 +16,13 @@ namespace FPTBookStore.Models
         [Required]
         [ForeignKey("Category")]
         [Display(Name = "Category")]
-        public int CategoryID { get; set; }
+        public int CategoryId { get; set; }
         public virtual Category? Category { get; set; }
 
         [Required]
         [ForeignKey("Author")]
         [Display(Name = "Author")]
-        public int AuthorID { get; set; }
+        public int AuthorId { get; set; }
         public virtual Author? Author { get; set; }
 
         [Required]
