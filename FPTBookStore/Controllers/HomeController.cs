@@ -1,6 +1,4 @@
-﻿using BookstoreEmailService.Models;
-using BookstoreEmailService.Services;
-using FPTBookStore.Models;
+﻿using FPTBookStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -21,8 +19,12 @@ namespace FPTBookStore.Controllers
         {
             return View();
         }
+		public IActionResult HomePage()
+		{
+			return View();
+		}
 
-        public IActionResult Privacy()
+		public IActionResult Shop()
         {
             return View();
         }
@@ -33,13 +35,15 @@ namespace FPTBookStore.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        //demo only -- TODO: remove this
         [HttpGet]
-        public IActionResult SendEMail()
+        public IActionResult SendEmail()
         {
-            var message = new MailMessage(new string[] { "mrshine4k@gmail.com" }, "subject", "Content: Emailing works");
+            var message = new Message(new string[] { "mrshine4k@gmail.com", "trietnmgcs210026@fpt.edu.vn" },
+                "Email từ app thư viện",
+                "Gửi được email thư viện rồi nè :O https://i.imgflip.com/5c15oj.png?a467760");
             _emailService.SendEmail(message);
             return StatusCode(StatusCodes.Status200OK);
         }
-
     }
 }

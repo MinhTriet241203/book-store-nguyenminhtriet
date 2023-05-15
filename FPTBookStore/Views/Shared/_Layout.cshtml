@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - FPTBookStore</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/FPTBookStore.styles.css" asp-append-version="true" />
@@ -22,9 +22,21 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        @if(User.Identity != null)
+                        {
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Author" asp-action="Index">Author</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="Index">Book</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
+                                </li>
+                            }
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -39,12 +51,15 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - FPTBookStore - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - FPTBookStore
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery.unobtrusive-ajax.js"></script>
+    <script src="https://kit.fontawesome.com/1c6258baf1.js" crossorigin="anonymous"></script>
+    @Html.RenderUnobtrusiveAjaxScript()
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
