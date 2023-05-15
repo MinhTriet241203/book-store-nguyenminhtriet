@@ -1,3 +1,5 @@
+using BookstoreEmailService.Models;
+using BookstoreEmailService.Services;
 using FPTBookStore.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +15,12 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+//add email config
+var emailConfiguration = builder.Configuration.GetSection("EmailConfiguration").Get<EmailConfig>();
+
+builder.Services.AddSingleton(emailConfiguration);
+
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 var app = builder.Build();
 
