@@ -3,6 +3,7 @@ using BookstoreEmailService.Services;
 using FPTBookStore.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using AspNetCore.Unobtrusive.Ajax;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,9 @@ builder.Services.AddSingleton(emailConfiguration);
 
 builder.Services.AddScoped<IEmailService, EmailService>();
 
+// Ajax
+builder.Services.AddUnobtrusiveAjax();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -40,6 +44,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+//Ajax
+app.UseUnobtrusiveAjax();
 
 app.UseAuthorization();
 
