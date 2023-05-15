@@ -11,5 +11,6 @@ namespace FPTBookStore.Data
         {
         }
         public DbSet<FPTBookStore.Models.Category> Category { get; set; } = default!;
+        public DbSet<FPTBookStore.Models.Author> Author { get; set; } = default!;
     }
 }
