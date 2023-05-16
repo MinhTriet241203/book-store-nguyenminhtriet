@@ -95,7 +95,6 @@ namespace FPTBookStore.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
-                user.Roles = Input.Role;
                 user.Name = Input.Name;
                 user.PhoneNumber = Input.PhoneNumber;
                 var result = await _userManager.CreateAsync(user, Input.Password);

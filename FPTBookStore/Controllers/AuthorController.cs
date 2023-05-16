@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FPTBookStore.Data;
 using FPTBookStore.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FPTBookStore.Controllers
 {
@@ -19,6 +20,7 @@ namespace FPTBookStore.Controllers
             _context = context;
         }
 
+        [Authorize(Roles = "Customer")]
         // GET: Author
         public async Task<IActionResult> Index(string searchString)
         {
@@ -40,7 +42,7 @@ namespace FPTBookStore.Controllers
             return View(await authors.ToListAsync());
         }
 
-
+        [Authorize(Roles = "Administrator")]
         // GET: Author/Details/5
         public async Task<IActionResult> Details(int? id)
         {

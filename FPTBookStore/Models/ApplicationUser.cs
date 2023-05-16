@@ -15,6 +15,5 @@ namespace FPTBookStore.Models
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Phone Number")]
         public override string PhoneNumber { get; set; }
-        public string? Roles { get; internal set; }
     }
 }
