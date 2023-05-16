@@ -28,9 +28,23 @@ namespace FPTBookStore.Controllers
 
 
         // GET: Book
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var applicationDbContext = _context.Book.Include(b => b.Author).Include(b => b.Category);
+            if (_context.Book == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Book'  is null.");
+            }
+
+            var books = from c in _context.Book
+                             select c;
+
+            //used to compare the input data with the data in the database, if the input data matches the data in the database, then get that data
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                books = books.Where(s => s.BookTitle!.Contains(searchString));
+            }
+
+            var applicationDbContext = books.Include(b => b.Author).Include(b => b.Category);
             return View(await applicationDbContext.ToListAsync());
         }
 
