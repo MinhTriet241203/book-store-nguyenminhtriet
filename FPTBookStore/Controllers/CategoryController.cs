@@ -20,11 +20,26 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: Category
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-              return _context.Category != null ? 
-                          View(await _context.Category.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Category'  is null.");
+            
+            if (_context.Category == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Category'  is null.");
+            }
+
+            var categories = from c in _context.Category
+                          select c;
+
+            //used to compare the input data with the data in the database, if the input data matches the data in the database, then get that data
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                categories = categories.Where(s => s.CategoryName!.Contains(searchString));
+            }
+
+            //Returns the received data
+            return View(await categories.ToListAsync());
+
         }
 
         // GET: Category/Details/5
