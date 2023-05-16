@@ -22,8 +22,7 @@ namespace FPTBookStore.Controllers
         //Linq command to get all books from the context
         public List<Book> ViewAllBooks()
         {
-            var books = (from b in _context.Book
-                         select b).ToList();
+            var books = _context.Book.Include(b => b.Author).Include(b => b.Category).ToList();
             return books;
         }
 

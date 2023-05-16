@@ -3,6 +3,7 @@
     ViewData["Title"] = "Shop";
 
 }
+<h1>S T O R E</h1>
 
 <!--A Design by W3layouts
 Author: W3layout
@@ -34,21 +35,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
     <partial name="Header" />
     <div class="content">
-        <div class="container" style="display: flex">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             @foreach (var item in Model)
             {
-                <div class="container" style="background-color: grey; margin: 0 0 0 5px">
-                    <p>
-                        @Html.DisplayFor(modelItem => item.BookTitle)
-                    </p>
-                    <p>
-                        @Html.DisplayFor(modelItem => item.Price)
-                    </p>
-                    <img src="@Html.DisplayFor(modelItem => item.Image)" alt="" />
+                <div class="col mb-5">
+                    <div class="card h-100  ">
+                        <!-- Product image-->
+                        <img class="card-img-top" src=" @Html.DisplayFor(modelItem => item.Image)" style="padding: 5px; border-radius: 10px;" />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">@Html.DisplayFor(modelItem => item.BookTitle)</h5>
+                                @Html.DisplayFor(modelItem => item.Author.AuthorName)
+                                -
+                                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center">
+                                <a class="btn btn-success btn-block" href="#">
+                                    @Html.DisplayFor(modelItem => item.Price)
+                                    $
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             }
-
         </div>
+
     </div>
     <div class="footer">
         <div class="container">

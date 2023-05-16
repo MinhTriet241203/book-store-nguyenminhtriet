@@ -3,6 +3,7 @@ using BookstoreEmailService.Services;
 using FPTBookStore.Data;
 using FPTBookStore.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace FPTBookStore.Controllers
@@ -21,10 +22,24 @@ namespace FPTBookStore.Controllers
         {
             return View();
         }
-		public IActionResult Single()
-		{
-			return View();
-		}
+        public async Task<IActionResult> Single(int? id)
+        {
+            if (id == null || _context.Book == null)
+            {
+                return NotFound();
+            }
+
+            var book = await _context.Book
+                .Include(b => b.Author)
+                .Include(b => b.Category)
+                .FirstOrDefaultAsync(m => m.BookId == id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            return View(book);
+        }
         public IActionResult HomePage()
         {
             return View();
@@ -32,8 +47,7 @@ namespace FPTBookStore.Controllers
 
         public IActionResult Shop()
         {
-            var books = (from b in _context.Book
-                         select b).ToList();
+            var books = _context.Book.Include(b => b.Author).Include(b => b.Category).ToList();
             return View(books);
         }
 
