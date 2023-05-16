@@ -4,6 +4,7 @@ using FPTBookStore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FPTBookStore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230516094640_orders")]
+    partial class orders
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -198,6 +201,10 @@ namespace FPTBookStore.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ApplicationUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("BookId")
                         .HasColumnType("int");
 
@@ -212,17 +219,14 @@ namespace FPTBookStore.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Total")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<double>("Total")
+                        .HasColumnType("float");
 
                     b.HasKey("OrderId");
 
-                    b.HasIndex("BookId");
+                    b.HasIndex("ApplicationUser");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("BookId");
 
                     b.ToTable("Order");
                 });
@@ -400,15 +404,17 @@ namespace FPTBookStore.Data.Migrations
 
             modelBuilder.Entity("FPTBookStore.Models.Order", b =>
                 {
+                    b.HasOne("FPTBookStore.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("FPTBookStore.Models.Book", "Book")
                         .WithMany()
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("FPTBookStore.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
 
                     b.Navigation("Book");
 
