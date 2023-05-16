@@ -89,7 +89,7 @@ namespace FPTBookStore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,NormalizedName,ConcurrencyStamp")] ApplicationRole applicationRole)
+        public async Task<IActionResult> Edit(string id, [Bind("Name,NormalizedName,ConcurrencyStamp")] ApplicationRole applicationRole)
         {
             if (id != applicationRole.Id)
             {
