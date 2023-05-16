@@ -21,6 +21,10 @@ namespace FPTBookStore.Controllers
         {
             return View();
         }
+		public IActionResult Single()
+		{
+			return View();
+		}
         public IActionResult HomePage()
         {
             return View();
