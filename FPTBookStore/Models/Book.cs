@@ -42,6 +42,10 @@ namespace FPTBookStore.Models
         public decimal Price { get; set; }
 
         [Required]
+        [Display(Name = "Available")]
+        public int Available { get; set; }
+
+        [Required]
         [Display(Name = "Image")]
         public string Image { get; set; }
     }

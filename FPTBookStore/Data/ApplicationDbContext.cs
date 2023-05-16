@@ -1,7 +1,6 @@
 ﻿using FPTBookStore.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using FPTBookStore.Models;
 
 namespace FPTBookStore.Data
 {
