@@ -19,6 +19,15 @@ namespace FPTBookStore.Controllers
             _context = context;
         }
 
+        //Linq command to get all books from the context
+        public List<Book> ViewAllBooks()
+        {
+            var books = (from b in _context.Book
+                         select b).ToList();
+            return books;
+        }
+
+
         // GET: Book
         public async Task<IActionResult> Index()
         {
@@ -161,14 +170,14 @@ namespace FPTBookStore.Controllers
             {
                 _context.Book.Remove(book);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool BookExists(int id)
         {
-          return (_context.Book?.Any(e => e.BookId == id)).GetValueOrDefault();
+            return (_context.Book?.Any(e => e.BookId == id)).GetValueOrDefault();
         }
     }
 }

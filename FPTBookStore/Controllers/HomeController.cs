@@ -1,5 +1,6 @@
 using BookstoreEmailService.Models;
 using BookstoreEmailService.Services;
+using FPTBookStore.Data;
 using FPTBookStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -9,11 +10,11 @@ namespace FPTBookStore.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IEmailService _emailService;
-        public HomeController(ILogger<HomeController> logger, IEmailService emailService)
+        private readonly ApplicationDbContext _context;
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
-            _emailService = emailService;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -24,27 +25,22 @@ namespace FPTBookStore.Controllers
 		{
 			return View();
 		}
-
-		public IActionResult Shop()
+        public IActionResult HomePage()
         {
             return View();
+        }
+
+        public IActionResult Shop()
+        {
+            var books = (from b in _context.Book
+                         select b).ToList();
+            return View(books);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        //demo only -- TODO: remove this
-        [HttpGet]
-        public IActionResult SendEmail()
-        {
-            var message = new MailMessage(new string[] { "mrshine4k@gmail.com", "trietnmgcs210026@fpt.edu.vn" },
-                "Email từ app thư viện",
-                "Gửi được email thư viện rồi nè :O https://i.imgflip.com/5c15oj.png?a467760");
-            _emailService.SendEmail(message);
-            return StatusCode(StatusCodes.Status200OK);
         }
     }
 }
