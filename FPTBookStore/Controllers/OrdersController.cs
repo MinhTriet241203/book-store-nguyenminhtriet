@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FPTBookStore.Data;
 using FPTBookStore.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FPTBookStore.Controllers
 {
@@ -23,6 +24,7 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: Orders
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Order.Include(o => o.Book);
@@ -30,6 +32,7 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: Orders/Details/5
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Order == null)
@@ -49,6 +52,7 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: Orders/Create
+        [Authorize(Roles = "Administrator, Manager")]
         public IActionResult Create()
         {
             ViewData["BookId"] = new SelectList(_context.Book, "BookId", "BookTitle");
@@ -60,6 +64,7 @@ namespace FPTBookStore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Create([Bind("OrderId,BookId,OrderDate,Status,Address,Phone,Total")] Order order)
         {
             if (ModelState.IsValid)
@@ -82,6 +87,7 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: Orders/Edit/5
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Order == null)
@@ -103,6 +109,7 @@ namespace FPTBookStore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Edit(int id, [Bind("OrderId,BookId,OrderDate,Status,Address,Phone,Total")] Order order)
         {
             if (id != order.OrderId)
@@ -135,6 +142,7 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: Orders/Delete/5
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Order == null)
@@ -156,6 +164,7 @@ namespace FPTBookStore.Controllers
         // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Order == null)

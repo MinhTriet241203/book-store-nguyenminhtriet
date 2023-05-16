@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FPTBookStore.Data;
 using FPTBookStore.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FPTBookStore.Controllers
 {
@@ -71,6 +72,7 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: Book/Create
+        [Authorize(Roles = "Administrator, Manager")]
         public IActionResult Create()
         {
             ViewData["AuthorId"] = new SelectList(_context.Author, "AuthorId", "AuthorName");
@@ -83,6 +85,7 @@ namespace FPTBookStore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Create([Bind("BookId,BookTitle,CategoryId,AuthorId,Pages,PublishDate,Description,Price,Available,Image")] Book book)
         {
             if (ModelState.IsValid)
@@ -97,6 +100,7 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: Book/Edit/5
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Book == null)
@@ -119,6 +123,7 @@ namespace FPTBookStore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Edit(int id, [Bind("BookId,BookTitle,CategoryId,AuthorId,Pages,PublishDate,Description,Price,Available,Image")] Book book)
         {
             if (id != book.BookId)
@@ -152,6 +157,7 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: Book/Delete/5
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Book == null)
@@ -174,6 +180,7 @@ namespace FPTBookStore.Controllers
         // POST: Book/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Book == null)
