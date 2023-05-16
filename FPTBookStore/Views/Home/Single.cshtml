@@ -26,6 +26,18 @@
                                 <p>Category: @Html.DisplayFor(model => model.Category.CategoryName)</p>
                                 <p>Pages: @Html.DisplayFor(model => model.Pages)</p>
                                 <p>Author: @Html.DisplayFor(model => model.Author.AuthorName)</p>
+                                @if (Model.Available > 10)
+                                {
+                                    <p><i class="fa-solid fa-check" style="color: #109844;"></i> In Stock</p>
+                                }
+                                else if (Model.Available == 0)
+                                {
+                                    <p><i class="fa-solid fa-xmark" style="color: #cb3434;"></i> Out of Stock</p>
+                                }
+                                else
+                                {
+                                    <p><i class="fa-solid fa-triangle-exclamation" style="color: #d6b12e;"></i> Only @Model.Available left</p>
+                                }
                             </ul>
                         </div>
                         <p class="single-price-text">@Html.DisplayFor(model => model.Description)</p>
