@@ -3,7 +3,6 @@
     ViewData["Title"] = "Shop";
 
 }
-<h1>S T O R E</h1>
 
 <!--A Design by W3layouts
 Author: W3layout
@@ -34,12 +33,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
     <partial name="Header" />
-    <div class="content">
+    <div class="content" style="padding: 10px 0; background-color: whitesmoke">
+        <h1>Available books</h1>
+        <hr style="width: 90%; margin: 20px auto 20px auto"/>
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             @foreach (var item in Model)
             {
                 <div class="col mb-5">
-                    <div class="card h-100  ">
+                    <div class="card h-100">
                         <!-- Product image-->
                         <img class="card-img-top" src=" @Html.DisplayFor(modelItem => item.Image)" style="padding: 5px; border-radius: 10px;" height="300px" />
                         <!-- Product details-->
@@ -68,6 +69,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
 
     </div>
+    <hr />
     <div class="footer">
         <div class="container">
             <div class="col-md-3 footer-grids fgd1">
