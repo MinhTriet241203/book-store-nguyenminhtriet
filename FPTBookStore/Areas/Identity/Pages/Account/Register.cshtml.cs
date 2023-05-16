@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using FPTBookStore.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using FPTBookStore.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -52,13 +52,12 @@ namespace FPTBookStore.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
-            [DataType(DataType.Text)]
             [Display(Name = "Name")]
             public string Name { get; set; }
 
             [Required]
-            [DataType(DataType.PhoneNumber)]
-            [Display(Name = "Phone numbers")]
+            [Display(Name = "Phone Number")]
+            [StringLength(10, ErrorMessage = "The {0} must have {1} digits!", MinimumLength = 10)]
             public string PhoneNumber { get; set; }
 
             [Required]
@@ -85,7 +84,9 @@ namespace FPTBookStore.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, Name = Input.Name, PhoneNumber = Input.PhoneNumber };
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
+                user.Name = Input.Name;
+                user.PhoneNumber = Input.PhoneNumber;
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

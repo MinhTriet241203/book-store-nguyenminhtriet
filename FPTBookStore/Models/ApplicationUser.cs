@@ -7,10 +7,12 @@ namespace FPTBookStore.Models
     {
         [Required]
         [StringLength(100, MinimumLength = 5)]
-        public string? Name { get; set; }
+        [Display(Name = "Name")]
+        public string Name { get; set; }
 
         [Required]
         [DataType(DataType.PhoneNumber)]
-        public string? PhoneNumber { get; set; }
+        [Display(Name = "Phone Number")]
+        public override string PhoneNumber { get; set; }
     }
 }
