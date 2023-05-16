@@ -40,30 +40,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             @foreach (var item in Model)
             {
                 <div class="col mb-5">
-                    <div class="card h-100">
-                        <!-- Product image-->
-                        <img class="card-img-top" src=" @Html.DisplayFor(modelItem => item.Image)" style="padding: 5px; border-radius: 10px;" height="300px" />
-                        <!-- Product details-->
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <!-- Product name-->
-                                <h5 class="fw-bolder">@Html.DisplayFor(modelItem => item.BookTitle)</h5>
-                                @Html.DisplayFor(modelItem => item.Author.AuthorName)
-                                -
-                                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                    <a href="Single/@Html.DisplayFor(modelItem => item.BookId)">
+                        <div class="card h-100  ">
+                            <!-- Product image-->
+                            <img class="card-img-top" src=" @Html.DisplayFor(modelItem => item.Image)" style="padding: 5px; border-radius: 10px;" height="300px" />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">@Html.DisplayFor(modelItem => item.BookTitle)</h5>
+                                    @Html.DisplayFor(modelItem => item.Author.AuthorName)
+                                    -
+                                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
 
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center">
+                                    <a class="btn btn-success btn-block" href="#">
+                                        @Html.DisplayFor(modelItem => item.Price)
+                                        $
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <!-- Product actions-->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center">
-                                <a class="btn btn-success btn-block" href="#">
-                                    @Html.DisplayFor(modelItem => item.Price)
-                                    $
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    </a>                   
                 </div>
             }
         </div>

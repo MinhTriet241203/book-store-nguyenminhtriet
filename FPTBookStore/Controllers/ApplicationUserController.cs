@@ -80,6 +80,7 @@ namespace FPTBookStore.Controllers
             {
                 try
                 {
+                    applicationUser.Roles = Request["applicationUser_Roles"];
                     _context.Update(applicationUser);
                     await _context.SaveChangesAsync();
                 }
