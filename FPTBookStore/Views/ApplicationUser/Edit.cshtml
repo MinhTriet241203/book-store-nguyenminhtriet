@@ -1,0 +1,49 @@
+﻿@model FPTBookStore.Models.UserRoleViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Application User</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="@Model.applicationUser.Id" />
+            <div class="form-group">
+                <label asp-for="@Model.applicationUser.Email" class="control-label"></label>
+                <input asp-for="@Model.applicationUser.Email" class="form-control" />
+                <span asp-validation-for="@Model.applicationUser.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.applicationUser.Name" class="control-label"></label>
+                <input asp-for="@Model.applicationUser.Name" class="form-control" />
+                <span asp-validation-for="@Model.applicationUser.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.applicationUser.PhoneNumber" class="control-label"></label>
+                <input asp-for="@Model.applicationUser.PhoneNumber" class="form-control" />
+                <span asp-validation-for="@Model.applicationUser.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.applicationUser.Roles"></label>
+                @Html.DropDownList("applicationUser.Roles", new SelectList(Model.applicationRole, "Name", "Name"), new {@class = "form-control"})
+                <span asp-validation-for="@Model.applicationUser.Roles" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
