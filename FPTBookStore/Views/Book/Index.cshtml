@@ -36,7 +36,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Image)
             </th>
-            <th></th>
+            <th>
+                Actions
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -64,12 +66,12 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Image)
+                <img src="@item.Image" alt="Book's picture" height="180px">
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.BookId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.BookId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.BookId">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.BookId"><i class="fa-solid fa-pen-to-square" style="color: #588157;"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.BookId"><i class="fa-solid fa-circle-info" style="color: #219ebc;"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.BookId"><i class="fa-solid fa-trash" style="color: #e63946;"></i></a>
             </td>
         </tr>
 }
