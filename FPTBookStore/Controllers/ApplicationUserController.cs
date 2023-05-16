@@ -24,9 +24,9 @@ namespace FPTBookStore.Controllers
         // GET: ApplicationRole
         public async Task<IActionResult> Index()
         {
-              return _context.ApplicationUsers != null ? 
-                          View(await _context.ApplicationUsers.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.ApplicationUsers'  is null.");
+            return _context.ApplicationUsers != null ?
+                        View(await _context.ApplicationUsers.ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.ApplicationUsers'  is null.");
         }
 
         // GET: ApplicationRole/Details/5
@@ -80,7 +80,7 @@ namespace FPTBookStore.Controllers
             {
                 try
                 {
-                    applicationUser.Roles = Request["applicationUser_Roles"];
+                    //applicationUser.Roles = Request["applicationUser_Roles"];
                     _context.Update(applicationUser);
                     await _context.SaveChangesAsync();
                 }

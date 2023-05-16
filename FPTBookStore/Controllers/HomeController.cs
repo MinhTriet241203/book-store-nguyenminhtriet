@@ -20,7 +20,8 @@ namespace FPTBookStore.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var featured = _context.Book.Include(b => b.Author).Include(b => b.Category).Take(4).ToList();
+            return View(featured);
         }
         public async Task<IActionResult> Single(int? id)
         {
