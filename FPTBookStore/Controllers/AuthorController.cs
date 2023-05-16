@@ -42,7 +42,7 @@ namespace FPTBookStore.Controllers
             return View(await authors.ToListAsync());
         }
 
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administration")]
         // GET: Author/Details/5
         public async Task<IActionResult> Details(int? id)
         {
