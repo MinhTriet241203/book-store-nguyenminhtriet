@@ -44,11 +44,11 @@ namespace FPTBookStore.Controllers
                 books = books.Where(s => s.BookTitle!.Contains(searchString));
             }
 
-            //Returns the received data
-            return View(await books.ToListAsync());
+            ////Returns the received data
+            //return View(await books.ToListAsync());
 
-            //var applicationDbContext = _context.Book.Include(b => b.Author).Include(b => b.Category);
-            //return View(await applicationDbContext.ToListAsync());
+            var applicationDbContext = books.Include(b => b.Author).Include(b => b.Category);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Book/Details/5
