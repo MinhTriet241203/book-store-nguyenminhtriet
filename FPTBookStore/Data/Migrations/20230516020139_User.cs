@@ -5,7 +5,7 @@
 namespace FPTBookStore.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class account : Migration
+    public partial class User : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
