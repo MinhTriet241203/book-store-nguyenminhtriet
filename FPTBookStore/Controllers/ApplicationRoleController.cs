@@ -22,7 +22,7 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: ApplicationRole
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Index()
         {
               return _context.ApplicationRole != null ? 
@@ -31,7 +31,7 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: ApplicationRole/Details/5
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Details(string id)
         {
             if (id == null || _context.ApplicationRole == null)
@@ -50,7 +50,7 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: ApplicationRole/Create
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
@@ -61,7 +61,7 @@ namespace FPTBookStore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Create([Bind("Id,Name,Description")] ApplicationRole applicationRole)
         {
             if (ModelState.IsValid)
@@ -75,7 +75,7 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: ApplicationRole/Delete/5
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null || _context.ApplicationRole == null)
