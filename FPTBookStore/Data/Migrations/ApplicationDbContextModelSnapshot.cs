@@ -130,6 +130,9 @@ namespace FPTBookStore.Data.Migrations
                     b.Property<int>("AuthorId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Available")
+                        .HasColumnType("int");
+
                     b.Property<string>("BookTitle")
                         .IsRequired()
                         .HasMaxLength(255)

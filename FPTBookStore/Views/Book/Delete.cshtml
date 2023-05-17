@@ -54,10 +54,16 @@
             @Html.DisplayFor(model => model.Price)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.Available)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Available)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Image)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Image)
+            <img src="@Model.Image" />
         </dd>
     </dl>
     

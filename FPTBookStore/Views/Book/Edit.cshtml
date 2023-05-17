@@ -49,8 +49,14 @@
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Available" class="control-label"></label>
+                <input asp-for="Available" class="form-control" />
+                <a class="btn btn-outline-secondary" id="1" onclick="updateAvailable(1)">+1</a><a class="btn btn-outline-secondary" id="5" onclick="updateAvailable(5)">+5</a><a class="btn btn-outline-secondary" id="10" onclick="updateAvailable(10)">+10</a><a class="btn btn-outline-secondary" id="100" onclick="updateAvailable(100)">+100</a>
+                <span asp-validation-for="Available" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" class="form-control" />
+                <input asp-for="Image" class="form-control" id="image" onchange="updateImage()" />
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -79,6 +85,12 @@
         var preview = document.querySelector("img");
         preview.src = document.getElementById("image").value;
     };
+
+    function updateAvailable(number){
+        current = parseInt(document.getElementById("Available").value);
+        current += number;
+        document.getElementById("Available").value = current;
+    }
 </script>
 
 @section Scripts {
