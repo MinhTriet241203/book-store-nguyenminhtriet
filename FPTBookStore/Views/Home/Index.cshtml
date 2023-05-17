@@ -73,7 +73,7 @@
             @foreach (var item in Model)
             {
                 <div class="col mb-5">
-                    <a href="Single/@Html.DisplayFor(modelItem => item.BookId)">
+                    <a href="/Home/Single/@Html.DisplayFor(modelItem => item.BookId)">
                         <div class="card h-100  ">
                             <!-- Product image-->
                             <img class="card-img-top" src=" @Html.DisplayFor(modelItem => item.Image)" style="padding: 5px; border-radius: 10px;" height="350px" />
