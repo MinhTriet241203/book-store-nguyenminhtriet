@@ -20,7 +20,7 @@ namespace FPTBookStore.Controllers
             _userManager = userManager;
         }
 
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Index(string searchString)
         {
             if (_context.UserRoles == null)
@@ -46,7 +46,7 @@ namespace FPTBookStore.Controllers
             return View(await UserRoles.ToListAsync());
         }
 
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null || _context.UserRoles == null)
@@ -84,7 +84,7 @@ namespace FPTBookStore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(UserRoles userrole)
         {
             var user = await _context.ApplicationUsers.FirstOrDefaultAsync(u => u.Id == userrole.UserId);

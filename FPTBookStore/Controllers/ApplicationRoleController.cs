@@ -22,7 +22,7 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: ApplicationRole
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Index()
         {
               return _context.ApplicationRole != null ? 
@@ -31,7 +31,7 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: ApplicationRole/Details/5
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Details(string id)
         {
             if (id == null || _context.ApplicationRole == null)
@@ -50,7 +50,7 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: ApplicationRole/Create
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
@@ -61,7 +61,7 @@ namespace FPTBookStore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Create([Bind("Id,Name,Description")] ApplicationRole applicationRole)
         {
             if (ModelState.IsValid)
@@ -74,61 +74,8 @@ namespace FPTBookStore.Controllers
             return View(applicationRole);
         }
 
-        // GET: ApplicationRole/Edit/5
-        [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> Edit(string id)
-        {
-            if (id == null || _context.ApplicationRole == null)
-            {
-                return NotFound();
-            }
-
-            var applicationRole = await _context.ApplicationRole.FindAsync(id);
-            if (applicationRole == null)
-            {
-                return NotFound();
-            }
-            return View(applicationRole);
-        }
-
-        // POST: ApplicationRole/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> Edit(string id, [Bind("Name,NormalizedName,ConcurrencyStamp")] ApplicationRole applicationRole)
-        {
-            if (id != applicationRole.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(applicationRole);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ApplicationRoleExists(applicationRole.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(applicationRole);
-        }
-
         // GET: ApplicationRole/Delete/5
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null || _context.ApplicationRole == null)
