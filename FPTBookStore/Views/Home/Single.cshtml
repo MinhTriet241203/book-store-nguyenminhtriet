@@ -41,15 +41,10 @@
                             </ul>
                         </div>
                         <p class="single-price-text">@Html.DisplayFor(model => model.Description)</p>
-                        <form action="#" method="post">
-                            <input type="hidden" name="" value="" />
-                            <input type="hidden" name="" value="" />
-                            <input type="hidden" name="" value="" />
-                            <input type="hidden" name="" value="" />
-                            <button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> 
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AddCart">Add to cart</a>
-                            </button>
-                        </form>
+                        <button onclick="add(@Model.BookId)" class="w3ls-cart">
+                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                            Add to cart
+                        </button>
                     </div>
                     <div class="clearfix"> </div>
                 </div>
@@ -108,3 +103,13 @@
 </body>
 </html>
 
+<script>
+    function add(bookId) {
+        var usernameEl = document.getElementById("username");
+        if (usernameEl == null) {
+            window.location.href = "/Identity/Account/Login";
+        } else {
+            window.location.href = `/Cart/AddItem?bookId=${bookId}`;
+        }
+    }
+</script>
