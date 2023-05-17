@@ -79,28 +79,28 @@ namespace FPTBookStore.Controllers
         // POST: Book/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(UserRoles userrole)
-        {
-            try
-            {
-                //var userrole = await _context.UserRoles.FirstOrDefaultAsync(u => u.Id == userid);
-                var oldRole = await _context.ApplicationRole.FirstOrDefaultAsync(r => r.Id == userrole.RoleId);
-                if(userrole != null)
-                {
-                    var newRole = await _context.ApplicationRole.FirstOrDefaultAsync(r => r.Id == roleid);
-                    if(newRole != null)
-                    {
-                        var user = await _context.ApplicationUsers.FirstOrDefaultAsync(u => u.Id == userid);
-                        await _userManager.RemoveFromRoleAsync(user, oldRole.Name);
-                        await _userManager.AddToRoleAsync(user, newRole.Name);
-                    }
-                }
-            }
-            catch (DbUpdateConcurrencyException)
-            {}
-            return RedirectToAction(nameof(Index));
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Edit(UserRoles userrole)
+        //{
+        //    try
+        //    {
+        //        //var userrole = await _context.UserRoles.FirstOrDefaultAsync(u => u.Id == userid);
+        //        var oldRole = await _context.ApplicationRole.FirstOrDefaultAsync(r => r.Id == userrole.RoleId);
+        //        if(userrole != null)
+        //        {
+        //            var newRole = await _context.ApplicationRole.FirstOrDefaultAsync(r => r.Id == roleid);
+        //            if(newRole != null)
+        //            {
+        //                var user = await _context.ApplicationUsers.FirstOrDefaultAsync(u => u.Id == userid);
+        //                await _userManager.RemoveFromRoleAsync(user, oldRole.Name);
+        //                await _userManager.AddToRoleAsync(user, newRole.Name);
+        //            }
+        //        }
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {}
+        //    return RedirectToAction(nameof(Index));
+        //}
     }
 }
