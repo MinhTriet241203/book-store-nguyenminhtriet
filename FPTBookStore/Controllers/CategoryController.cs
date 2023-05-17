@@ -21,6 +21,7 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: Category
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Index(string searchString)
         {
             
@@ -44,6 +45,7 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: Category/Details/5
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Category == null)
@@ -62,7 +64,7 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: Category/Create
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator, Manager")]
         public IActionResult Create()
         {
             return View();
@@ -73,7 +75,7 @@ namespace FPTBookStore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Create([Bind("CategoryID,CategoryName")] Category category)
         {
             if (ModelState.IsValid)
@@ -86,7 +88,7 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: Category/Edit/5
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Category == null)
@@ -107,7 +109,7 @@ namespace FPTBookStore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Edit(int id, [Bind("CategoryID,CategoryName")] Category category)
         {
             if (id != category.CategoryID)
@@ -139,7 +141,7 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: Category/Delete/5
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Category == null)
@@ -160,7 +162,7 @@ namespace FPTBookStore.Controllers
         // POST: Category/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Category == null)

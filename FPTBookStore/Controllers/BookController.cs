@@ -24,6 +24,7 @@ namespace FPTBookStore.Controllers
         }
 
         //Linq command to get all books from the context
+        [Authorize(Roles = "Administrator, Manager")]
         public List<Book> ViewAllBooks()
         {
             var books = _context.Book.Include(b => b.Author).Include(b => b.Category).ToList();
@@ -31,6 +32,7 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: Book
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Index(string searchString)
         {
             if (_context.Book == null)
@@ -52,6 +54,7 @@ namespace FPTBookStore.Controllers
         }
 
         // GET: Book/Details/5
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Book == null)
