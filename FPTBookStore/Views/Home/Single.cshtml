@@ -28,7 +28,7 @@
                                 <p>Author: @Html.DisplayFor(model => model.Author.AuthorName)</p>
                                 @if (Model.Available > 10)
                                 {
-                                    <p><i class="fa-solid fa-check" style="color: #109844;"></i> In Stock</p>
+                                    <p><i class="fa-solid fa-check" style="color: #109844;"></i> In Stock (@Model.Available)</p>
                                 }
                                 else if (Model.Available == 0)
                                 {
