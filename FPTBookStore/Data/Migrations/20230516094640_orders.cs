@@ -12,7 +12,7 @@ namespace FPTBookStore.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Order",
+                name: "OrderDetails",
                 columns: table => new
                 {
                     OrderId = table.Column<int>(type: "int", nullable: false)
@@ -44,12 +44,12 @@ namespace FPTBookStore.Data.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Order_ApplicationUser",
-                table: "Order",
+                table: "OrderDetails",
                 column: "ApplicationUser");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Order_BookId",
-                table: "Order",
+                table: "OrderDetails",
                 column: "BookId");
         }
 
@@ -57,7 +57,7 @@ namespace FPTBookStore.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Order");
+                name: "OrderDetails");
         }
     }
 }

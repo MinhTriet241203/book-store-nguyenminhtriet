@@ -23,6 +23,10 @@ namespace FPTBookStore.Controllers
             var featured = _context.Book.Include(b => b.Author).Include(b => b.Category).Take(4).ToList();
             return View(featured);
         }
+        public  IActionResult AddCart()
+        {
+            return View();
+        }
         public async Task<IActionResult> Single(int? id)
         {
             if (id == null || _context.Book == null)

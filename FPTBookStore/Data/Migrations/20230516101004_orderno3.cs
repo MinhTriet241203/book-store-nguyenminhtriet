@@ -12,7 +12,7 @@ namespace FPTBookStore.Data.Migrations
         {
             migrationBuilder.AlterColumn<int>(
                 name: "Total",
-                table: "Order",
+                table: "OrderDetails",
                 type: "int",
                 nullable: false,
                 oldClrType: typeof(double),
@@ -24,7 +24,7 @@ namespace FPTBookStore.Data.Migrations
         {
             migrationBuilder.AlterColumn<double>(
                 name: "Total",
-                table: "Order",
+                table: "OrderDetails",
                 type: "float",
                 nullable: false,
                 oldClrType: typeof(int),

@@ -17,7 +17,7 @@ namespace FPTBookStore.Data.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "Status",
-                table: "Order",
+                table: "OrderDetails",
                 type: "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
@@ -25,7 +25,7 @@ namespace FPTBookStore.Data.Migrations
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "OrderDate",
-                table: "Order",
+                table: "OrderDetails",
                 type: "datetime2",
                 nullable: true,
                 oldClrType: typeof(DateTime),
@@ -37,7 +37,7 @@ namespace FPTBookStore.Data.Migrations
         {
             migrationBuilder.AlterColumn<string>(
                 name: "Status",
-                table: "Order",
+                table: "OrderDetails",
                 type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "",
@@ -47,7 +47,7 @@ namespace FPTBookStore.Data.Migrations
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "OrderDate",
-                table: "Order",
+                table: "OrderDetails",
                 type: "datetime2",
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
