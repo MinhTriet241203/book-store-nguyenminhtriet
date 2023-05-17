@@ -189,7 +189,7 @@ namespace FPTBookStore.Data.Migrations
                     b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("FPTBookStore.Models.Order", b =>
+            modelBuilder.Entity("FPTBookStore.Models.OrderDetails", b =>
                 {
                     b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
@@ -227,7 +227,7 @@ namespace FPTBookStore.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Order");
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -401,7 +401,7 @@ namespace FPTBookStore.Data.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("FPTBookStore.Models.Order", b =>
+            modelBuilder.Entity("FPTBookStore.Models.OrderDetails", b =>
                 {
                     b.HasOne("FPTBookStore.Models.Book", "Book")
                         .WithMany()

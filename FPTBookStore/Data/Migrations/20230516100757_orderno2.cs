@@ -12,30 +12,30 @@ namespace FPTBookStore.Data.Migrations
         {
             migrationBuilder.DropForeignKey(
                 name: "FK_Order_AspNetUsers_ApplicationUser",
-                table: "Order");
+                table: "OrderDetails");
 
             migrationBuilder.DropIndex(
                 name: "IX_Order_ApplicationUser",
-                table: "Order");
+                table: "OrderDetails");
 
             migrationBuilder.DropColumn(
                 name: "ApplicationUser",
-                table: "Order");
+                table: "OrderDetails");
 
             migrationBuilder.AddColumn<string>(
                 name: "UserId",
-                table: "Order",
+                table: "OrderDetails",
                 type: "nvarchar(450)",
                 nullable: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Order_UserId",
-                table: "Order",
+                table: "OrderDetails",
                 column: "UserId");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Order_AspNetUsers_UserId",
-                table: "Order",
+                table: "OrderDetails",
                 column: "UserId",
                 principalTable: "AspNetUsers",
                 principalColumn: "Id");
@@ -46,31 +46,31 @@ namespace FPTBookStore.Data.Migrations
         {
             migrationBuilder.DropForeignKey(
                 name: "FK_Order_AspNetUsers_UserId",
-                table: "Order");
+                table: "OrderDetails");
 
             migrationBuilder.DropIndex(
                 name: "IX_Order_UserId",
-                table: "Order");
+                table: "OrderDetails");
 
             migrationBuilder.DropColumn(
                 name: "UserId",
-                table: "Order");
+                table: "OrderDetails");
 
             migrationBuilder.AddColumn<string>(
                 name: "ApplicationUser",
-                table: "Order",
+                table: "OrderDetails",
                 type: "nvarchar(450)",
                 nullable: false,
                 defaultValue: "");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Order_ApplicationUser",
-                table: "Order",
+                table: "OrderDetails",
                 column: "ApplicationUser");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Order_AspNetUsers_ApplicationUser",
-                table: "Order",
+                table: "OrderDetails",
                 column: "ApplicationUser",
                 principalTable: "AspNetUsers",
                 principalColumn: "Id",

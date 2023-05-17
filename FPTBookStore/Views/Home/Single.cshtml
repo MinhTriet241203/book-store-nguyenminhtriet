@@ -42,11 +42,11 @@
                         </div>
                         <p class="single-price-text">@Html.DisplayFor(model => model.Description)</p>
                         <form action="#" method="post">
-                            <input type="hidden" name="cmd" value="_cart" />
-                            <input type="hidden" name="add" value="1" />
-                            <input type="hidden" name="w3ls1_item" value="Handbag" />
-                            <input type="hidden" name="amount" value="540.00" />
-                            <button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> <a asp-area="" asp-controller="Home" asp-action="AddCart">Add to cart<</a></button>
+                            <input type="hidden" name="" value="" />
+                            <input type="hidden" name="" value="" />
+                            <input type="hidden" name="" value="" />
+                            <input type="hidden" name="" value="" />
+                            <button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
                         </form>
                     </div>
                     <div class="clearfix"> </div>
@@ -103,25 +103,6 @@
             <p class="copy-right">© 2016 Fashion Club . All rights reserved | Design by <a href="http://w3layouts.com"> W3layouts.</a></p>
         </div>
     </div>
-    <!-- cart-js -->
-    <script src="~/js/minicart.js"></script>
-    <script>
-        w3ls1.render();
-
-        w3ls1.cart.on('w3sb1_checkout', function (evt) {
-            var items, len, i;
-
-            if (this.subtotal() > 0) {
-                items = this.items();
-
-                for (i = 0, len = items.length; i < len; i++) {
-                    items[i].set('shipping', 0);
-                    items[i].set('shipping2', 0);
-                }
-            }
-        });
-    </script>
-    <!-- //cart-js -->
 </body>
 </html>
 
