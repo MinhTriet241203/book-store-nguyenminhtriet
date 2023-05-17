@@ -7,5 +7,5 @@ public class ApplicationRole : IdentityRole
 {
     [Required]
     [Display(Name = "Description")]
-    public string Description;
+    public string Description { get; set; }
 }
