@@ -81,43 +81,26 @@ namespace FPTBookStore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(FormCollection collection)
+        public async Task<IActionResult> Edit(UserRoles userrole)
         {
             try
             {
-                var user = await _context.ApplicationUsers.FirstOrDefaultAsync(u => u.Id == collection[0]);
-                if(user != null)
+                //var userrole = await _context.UserRoles.FirstOrDefaultAsync(u => u.Id == userid);
+                var oldRole = await _context.ApplicationRole.FirstOrDefaultAsync(r => r.Id == userrole.RoleId);
+                if(userrole != null)
                 {
-                    var role = await _context.ApplicationRole.FirstOrDefaultAsync(r => r.Name == roleName);
-                    if(role != null)
+                    var newRole = await _context.ApplicationRole.FirstOrDefaultAsync(r => r.Id == roleid);
+                    if(newRole != null)
                     {
-                        await _userManager.RemoveFromRoleAsync(user, role.ToString());
-                        await _userManager.AddToRoleAsync(user, roleName);
+                        var user = await _context.ApplicationUsers.FirstOrDefaultAsync(u => u.Id == userid);
+                        await _userManager.RemoveFromRoleAsync(user, oldRole.Name);
+                        await _userManager.AddToRoleAsync(user, newRole.Name);
                     }
                 }
             }
             catch (DbUpdateConcurrencyException)
             {}
             return RedirectToAction(nameof(Index));
-
-            var UserRoles = (from ur in _context.UserRoles
-                             join u in _context.ApplicationUsers
-                             on ur.UserId equals u.Id
-                             join r in _context.ApplicationRole
-                             on ur.RoleId equals r.Id
-                             where u.Id == id
-                             select new UserRoles
-                             {
-                                 UserId = ur.UserId,
-                                 Name = u.Name,
-                                 Email = u.Email,
-                                 PhoneNumber = u.PhoneNumber,
-                                 RoleId = r.Id
-                             });
-
-            var userRoles = await _context.UserRoles.FirstOrDefaultAsync(ur => ur.UserId == id);
-            ViewData["Roles"] = new SelectList(_context.ApplicationRole, "Id", "Name", userRole.RoleId);
-            return View(userRoles);
         }
     }
 }
