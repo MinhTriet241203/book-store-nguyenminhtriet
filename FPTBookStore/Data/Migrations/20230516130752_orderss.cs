@@ -12,11 +12,11 @@ namespace FPTBookStore.Data.Migrations
         {
             migrationBuilder.DropForeignKey(
                 name: "FK_Order_AspNetUsers_UserId",
-                table: "Order");
+                table: "OrderDetails");
 
             migrationBuilder.AlterColumn<string>(
                 name: "UserId",
-                table: "Order",
+                table: "OrderDetails",
                 type: "nvarchar(450)",
                 nullable: false,
                 defaultValue: "",
@@ -26,7 +26,7 @@ namespace FPTBookStore.Data.Migrations
 
             migrationBuilder.AlterColumn<decimal>(
                 name: "Total",
-                table: "Order",
+                table: "OrderDetails",
                 type: "decimal(18,2)",
                 nullable: false,
                 oldClrType: typeof(int),
@@ -34,7 +34,7 @@ namespace FPTBookStore.Data.Migrations
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Order_AspNetUsers_UserId",
-                table: "Order",
+                table: "OrderDetails",
                 column: "UserId",
                 principalTable: "AspNetUsers",
                 principalColumn: "Id",
@@ -46,11 +46,11 @@ namespace FPTBookStore.Data.Migrations
         {
             migrationBuilder.DropForeignKey(
                 name: "FK_Order_AspNetUsers_UserId",
-                table: "Order");
+                table: "OrderDetails");
 
             migrationBuilder.AlterColumn<string>(
                 name: "UserId",
-                table: "Order",
+                table: "OrderDetails",
                 type: "nvarchar(450)",
                 nullable: true,
                 oldClrType: typeof(string),
@@ -58,7 +58,7 @@ namespace FPTBookStore.Data.Migrations
 
             migrationBuilder.AlterColumn<int>(
                 name: "Total",
-                table: "Order",
+                table: "OrderDetails",
                 type: "int",
                 nullable: false,
                 oldClrType: typeof(decimal),
@@ -66,7 +66,7 @@ namespace FPTBookStore.Data.Migrations
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Order_AspNetUsers_UserId",
-                table: "Order",
+                table: "OrderDetails",
                 column: "UserId",
                 principalTable: "AspNetUsers",
                 principalColumn: "Id");
