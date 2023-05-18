@@ -106,6 +106,7 @@ namespace FPTBookStore.Controllers
             return RedirectToAction("GetUserCart");
         }
 
+        [HttpGet]
         public IActionResult CheckoutCart(string address, string phone)
         {
             var userID = GetUserId();
@@ -122,8 +123,9 @@ namespace FPTBookStore.Controllers
                 UserId = userID,
                 Address = address,
                 Phone = phone,
-                OrderStatus = "Pending"
+                OrderStatus = "Pending",
             };
+
             _context.Order.Add(order);
             _context.SaveChanges();
 
