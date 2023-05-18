@@ -54,12 +54,14 @@ namespace FPTBookStore.Controllers
             return View(cart);
         }
 
+        [Authorize]
         public Cart GetCart(string userId)
         {
             var cart = _context.Cart.FirstOrDefault(x => x.UserId == userId);
             return cart;
         }
 
+        [Authorize]
         public IActionResult AddItem(int bookID, int quantity = 1)
         {
             var userID = GetUserId();
@@ -98,6 +100,7 @@ namespace FPTBookStore.Controllers
             return RedirectToAction("GetUserCart");
         }
 
+        [Authorize]
         public IActionResult RemoveItem(int bookID)
         {
             var userID = GetUserId();
@@ -119,6 +122,7 @@ namespace FPTBookStore.Controllers
             return RedirectToAction("GetUserCart");
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult CheckoutCart(string address, string phone)
         {

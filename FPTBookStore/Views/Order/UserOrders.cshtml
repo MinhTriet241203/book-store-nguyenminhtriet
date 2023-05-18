@@ -12,6 +12,10 @@
                         <div class="card-body text-black">
                             <h1 class="text-primary">Your orders</h1>
                             <hr />
+                            @if(Model.Count() == 0)
+                            {
+                                <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">You have no orders yet. <a href="~/home/shop">Shop here!</a></h3>
+                            }
                             @foreach (var order in Model.Reverse())
                             {
                                 <div class="row">
@@ -19,7 +23,7 @@
                                     {
                                         <div class="col px-5 py-4">
 
-                                            <h3 class="mb-5 pt-2 text-left fw-bold text-uppercase">Order No.@order.Id</h3>
+                                            <h3 class="mb-5 pt-2 text-left fw-bold text-uppercase">Order Id: No.@order.Id</h3>
                                             @foreach (var OrderDetails in order.OrderDetails)
                                             {
                                                 <div class="d-flex align-items-center mb-5">
