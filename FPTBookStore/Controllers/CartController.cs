@@ -38,6 +38,17 @@ namespace FPTBookStore.Controllers
                 .ThenInclude(x => x.Category)
                 .FirstOrDefault(x => x.UserId == userID);
 
+            if (cart == null)
+            {
+                cart = new Cart
+                {
+                    UserId = userID
+                };
+                _context.Cart.Add(cart);
+                _context.SaveChanges();
+                return View(cart);
+            }
+
             return View(cart);
         }
 
