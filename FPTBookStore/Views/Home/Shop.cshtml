@@ -35,7 +35,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <partial name="Header" />
     <div class="content" style="padding: 10px 0; background-color: whitesmoke">
         <h1>Available books</h1>
-        <hr style="width: 90%; margin: 20px auto 20px auto"/>
+        <div class="d-flex justify-content-center mt-3">
+            <form asp-controller="Home" asp-action="Shop" style="width:50%">
+                <div class="input-group">
+                    <input class="form-control rounded" placeholder="Search for books" type="search" name="SearchString" style="margin: 0 auto; width:85%" />
+                    <button type="submit" class="btn btn-success">search</button>
+                </div>
+            </form>
+        </div>
+        <hr style="width: 90%; margin: 20px auto 20px auto" />
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             @foreach (var item in Model)
             {
@@ -64,7 +72,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </div>
                             </div>
                         </div>
-                    </a>                   
+                    </a>
                 </div>
             }
         </div>
