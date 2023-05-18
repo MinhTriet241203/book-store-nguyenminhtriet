@@ -1,5 +1,6 @@
 ﻿using FPTBookStore.Data;
 using FPTBookStore.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,7 @@ namespace FPTBookStore.Controllers
             return _userManager.GetUserId(user);
         }
 
+        [Authorize]
         public IActionResult GetUserCart()
         {
             var userID = GetUserId() ?? throw new Exception("Invalid UserId");
@@ -163,7 +165,7 @@ namespace FPTBookStore.Controllers
             _context.CartDetails.RemoveRange(cartDetails);
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("UserOrders", "Order");
         }
 
     }

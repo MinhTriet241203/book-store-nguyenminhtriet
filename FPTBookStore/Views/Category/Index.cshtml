@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Category index</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -30,17 +30,18 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CategoryID"><i class="fa-solid fa-pen-to-square" style="color: #588157;"></i></a>
-                <a asp-action="Details" asp-route-id="@item.CategoryID"><i class="fa-solid fa-circle-info" style="color: #219ebc;"></i></a>
-                <a asp-action="Delete" asp-route-id="@item.CategoryID"><i class="fa-solid fa-trash" style="color: #e63946;"></i></a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Reverse())
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CategoryID"><i class="fa-solid fa-pen-to-square" style="color: #588157;"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.CategoryID"><i class="fa-solid fa-circle-info" style="color: #219ebc;"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.CategoryID"><i class="fa-solid fa-trash" style="color: #e63946;"></i></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -73,7 +73,7 @@ namespace FPTBookStore.Controllers
             order.OrderStatus = "Received";
             _context.Update(order);
             _context.SaveChanges();
-            return RedirectToAction("UserOrder");
+            return RedirectToAction("UserOrders");
         }
 
         public IActionResult Delete(int id)

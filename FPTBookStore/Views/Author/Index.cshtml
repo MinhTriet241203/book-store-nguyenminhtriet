@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h2>Author index</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -36,7 +36,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Reverse())
         {
             <tr>
                 <td>
