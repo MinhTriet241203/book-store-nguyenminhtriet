@@ -1,0 +1,84 @@
+﻿@model IEnumerable<FPTBookStore.Models.Book>
+@{
+    ViewData["Title"] = "Author";
+
+}
+<partial name="Header" />
+
+
+<body>
+    <div class="products" style="background-color: whitesmoke; border-radius: 10px; padding: 20px 0;">
+        <h2 style="text-align: left; padding-left: 85px; padding-top: 0"><a href="/Home/Shop" style="font-size:20px"><i class="fa fa-arrow-left" aria-hidden="true"></i>    </a> | Author information</h2>
+        <hr style="width: 90%; margin:10px auto 20px auto;" />
+        <div class="container">
+            <div class="single-page">
+                <div class="single-page-row" id="detail-21">
+                    <div class="col-md-6 single-top-left">
+                        <div class="flexslider">
+                            <ul class="slides">
+                                <li data-thumb="@Html.DisplayFor(model => model.First().Author.Image)">
+                                    <div class="thumb-image detail_images"> <img src="@Html.DisplayFor(model => model.First().Author.Image)" data-imagezoom="true" class="img-responsive" alt="" style="border-radius: 5px"> </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 single-top-right">
+                        <h3 class="item_name"> @Html.DisplayFor(model => model.First().Author.AuthorName)</h3>
+                        <p class="single-price-text">@Html.DisplayFor(model => model.First().Author.Description)</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+
+        </div>
+        <hr />
+        <h3 class="item_name"> Author's Books</h3>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            @foreach (var item in Model)
+            {
+                <div class="col mb-5">
+                    <a href="../Single/@Html.DisplayFor(model => item.BookId)">
+                        <div class="card h-100  ">
+                            <!-- Product image-->
+                            <img class="card-img-top" src=" @Html.DisplayFor(model => item.Image)" style="padding: 5px; border-radius: 10px;" height="300px" />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">@Html.DisplayFor(model => item.BookTitle)</h5>
+                                    @Html.DisplayFor(model => item.Category.CategoryName)
+
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center">
+                                    <a class="btn btn-success btn-block" href="~/Cart/AddItem?bookId=@item.BookId">
+                                        $@Html.DisplayFor(modelItem => item.Price)
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    function add(bookId) {
+        var usernameEl = document.getElementById("username");
+        if (usernameEl == null) {
+            window.location.href = "/Identity/Account/Login";
+        } else {
+            window.location.href = `/Cart/AddItem?bookId=${bookId}`;
+        }
+    }
+</script>

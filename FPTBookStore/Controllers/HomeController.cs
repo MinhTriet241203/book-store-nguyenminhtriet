@@ -52,7 +52,7 @@ namespace FPTBookStore.Controllers
         {
             if (_context.Book == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Book'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Book' is null.");
             }
 
             var books = from c in _context.Book
@@ -66,15 +66,46 @@ namespace FPTBookStore.Controllers
 
             var applicationDbContext = books.Include(b => b.Author).Include(b => b.Category);
             return View(await applicationDbContext.ToListAsync());
-
-            //var books = _context.Book.Include(b => b.Author).Include(b => b.Category).ToList();
-            //return View(books);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public async Task<IActionResult> Author(string searchString)
+        {
+            if (_context.Author == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Author' is null.");
+            }
+
+            var authors = from c in _context.Author
+                          select c;
+
+            //used to compare the input data with the data in the database, if the input data matches the data in the database, then get that data
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                authors = authors.Where(s => s.AuthorName!.Contains(searchString));
+            }
+            return View(await authors.ToListAsync());
+        }
+
+        public async Task<IActionResult> AuthorSingle(int? id)
+        {
+            if (id == null || _context.Author == null || _context.Book == null)
+            {
+                return NotFound();
+            }
+
+            var books = _context.Book.Where(m => m.AuthorId.Equals(id)).Include(m => m.Author).Include(m => m.Category);
+            if (books == null)
+            {
+                return NotFound();
+            }
+
+            return View(await books.ToListAsync());
         }
     }
 }
