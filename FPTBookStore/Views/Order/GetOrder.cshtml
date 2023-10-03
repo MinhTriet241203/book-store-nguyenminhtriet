@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FPTBookStore.Models.Order>
+﻿@model IEnumerable<FPTBookStore.Models.OrderDetails>
 
 @{
     ViewData["Title"] = "GetOrder";
@@ -13,16 +13,22 @@
                 @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UserId)
+                @Html.DisplayNameFor(model => model.Order.User.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address)
+                @Html.DisplayNameFor(model => model.Order.Address)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Phone)
+                @Html.DisplayNameFor(model => model.Order.Phone)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OrderStatus)
+                @Html.DisplayNameFor(model => model.Book.BookTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order.OrderStatus)
             </th>
             <th></th>
         </tr>
@@ -35,32 +41,38 @@
                     @Html.DisplayFor(modelItem => item.Id)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UserId)
+                    @Html.DisplayFor(modelItem => item.Order.User.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Address)
+                    @Html.DisplayFor(modelItem => item.Order.Address)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
+                    @Html.DisplayFor(modelItem => item.Order.Phone)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.OrderStatus)
+                    @Html.DisplayFor(modelItem => item.Book.BookTitle)
                 </td>
                 <td>
-                    @if (item.OrderStatus == "Pending")
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order.OrderStatus)
+                </td>
+                <td>
+                    @if (item.Order.OrderStatus == "Pending")
                     {
                         <a asp-action="ShipOrder" asp-route-id="@item.Id" class="btn btn-success btn-sm">Ship order</a>
                     }
-                    else if (item.OrderStatus == "Shipping")
+                    else if (item.Order.OrderStatus == "Shipping")
                     {
-                        <p class="btn btn-warning btn-sm" style="vertical-align:initial">@item.OrderStatus</p>
+                        <p class="btn btn-warning btn-sm" style="vertical-align:initial">@item.Order.OrderStatus</p>
                     }
                     else
                     {
-                        <p class="btn btn-info btn-sm" style="vertical-align:initial">@item.OrderStatus</p>
+                        <p class="btn btn-info btn-sm" style="vertical-align:initial">@item.Order.OrderStatus</p>
                     }
 
-                    | <a asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-trash" style="color: #e63946;"></i></a>
+                    | <a asp-action="Delete" asp-route-id="@item.Order.Id"><i class="fa-solid fa-trash" style="color: #e63946;"></i></a>
                 </td>
             </tr>
         }

@@ -29,9 +29,6 @@ namespace FPTBookStore.Controllers
                 .Include(x => x.OrderDetails)
                 .ThenInclude(x => x.Book)
                 .ThenInclude(x => x.Author)
-                .Include(x => x.OrderDetails)
-                .ThenInclude(x => x.Book)
-                .ThenInclude(x => x.Category)
                 .Where(o => o.UserId == userId)
                 .ToList();
 
@@ -41,7 +38,11 @@ namespace FPTBookStore.Controllers
         [Authorize(Roles = "Administrator, Manager")]
         public IActionResult GetOrder()
         {
-            var orders = _context.Order.ToList();
+            var orders = _context.OrderDetails
+                .Include(x => x.Order)
+                .ThenInclude(x => x.User)
+                .Include(x => x.Book)
+                .ToList();
             return View(orders);
         }
 
