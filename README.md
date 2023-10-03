@@ -186,4 +186,4 @@ Placing order will show the new order for the manager as well as reduce the numb
 
 - The database for this application was SQL Server LocalDb which is integrated into Visual Studio so that we can easily access the database when working on the IDE.
 
-#### More information on how we planned and implemented this application as well as difficulties we faced can be found [HERE](https://drive.google.com/file/d/1HdDOT6qGC6n75hzU_B4T7wkXkQA5oYRZ/view?usp=sharing).
+#### More information on how we planned and implemented this application as well as difficulties we faced can be found [HERE](https://drive.google.com/file/d/1y6oRuRMbsS7QGhiJLWrkGkTyHnJGCJxm/view?usp=sharing).
